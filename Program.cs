@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RazorPagesMovie07Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovie07Context") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovie07Context' not found.")));
 
 var app = builder.Build();
 
